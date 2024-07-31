@@ -1,3 +1,48 @@
-site_name: My Docs
+site_name: Weiuou's Blog
 theme:
   name: material
+  palette: 
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - medis: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: gray
+      accent: deep purple
+      toggle: 
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.indexes
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+nav:
+  - Welcome~:
+    - index.md
+    - Page 1: page-1.md
+    - Page 2: page-2.md
+  - 考研频道:
+    - 总体规划: 考研/index.md
+    - 考研数学: 
+      - 数学考研规划: 考研/math.md
+      - 高等数学: 考研/math.md
+      - 线性代数: 考研/math.md
+      - 概率论: 考研/math.md
+    - 考研英语: 考研/English.md
+    - 考研政治: 考研/politics.md
+    - 专业课(408):
+      - 408考研规划: 考研/408.md
+      - 计算机组成原理: 考研/计算机组成原理.md
+      - 操作系统: 考研/操作系统.md
+      - 计算机网络: 考研/计算机网络.md
+      - 数据结构: 考研/数据结构.md
+  - 深度学习频道:
+    - DL/index.md
