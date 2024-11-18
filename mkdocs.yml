@@ -32,6 +32,9 @@ nav:
     - index.md
     - Page 1: page-1.md
     - Page 2: page-2.md
+  - 考研政治:
+    - 考研政治/index.md
+    - 思修: 考研政治/思修.md
   - 考研频道:
     - 总体规划: 考研/index.md
     - 考研数学: 
