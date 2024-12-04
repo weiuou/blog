@@ -27,6 +27,12 @@ markdown_extensions:
       permalink: true
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 nav:
   - Welcome~:
     - index.md
@@ -50,3 +56,5 @@ nav:
     - 计算机系统概述: 计算机组成原理/第一章/计算机系统概述.md
     - 第二章: 
       - 整数的表示: 计算机组成原理/第二章/整数的表示.md
+    - 真题:
+      - 计算机组成原理/真题/index.md
