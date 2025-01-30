@@ -20,6 +20,7 @@
 |project:user:1|age|21|
 |project:user:2|name|Rose|
 |project:user:2|age|18|
+
 ### 常用命令
 - `HSET key field value`:添加或修改hash中key的field的值
 - `HGET key field`:获取一个hash中key的field的值
