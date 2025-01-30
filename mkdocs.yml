@@ -58,3 +58,6 @@ nav:
       - 整数的表示: 计算机组成原理/第二章/整数的表示.md
     - 真题:
       - 计算机组成原理/真题/index.md
+  - Redis学习:
+    - Redis基本数据类型: redis学习/redis基本数据类型.md
+    - Redis通用命令: redis学习/redis通用命令.md
