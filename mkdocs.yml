@@ -67,7 +67,8 @@ nav:
   - Redis学习:
     - Redis基本数据类型: redis学习/redis基本数据类型.md
     - Redis通用命令: redis学习/redis通用命令.md
-  - AIAgent:
+  - AI-Agents:
     - Agents Course: hfAIagent/index.md
     - AI代理简介: hfAIagent/Unit1/代理简介.md
     - 什么是LLM: hfAIagent/Unit1/什么是LLM.md
+    - 用Python写一个Agent: hfAIagent/Unit1/创建第一个Agent.md
