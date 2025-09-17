@@ -45,6 +45,201 @@
 
   {{ partial('_partials/widgets.njk', {}, {cache: theme.cache.enable}) }}
 
+  <!-- 全局音乐播放器 -->
+  <div id="global-music-player" class="music-player" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: none;">
+    <div class="player-container">
+      <!-- 播放器头部 -->
+      <div class="music-player-header">
+        <div class="header-info">
+          <h2>本地音乐播放器</h2>
+          <div class="player-stats">
+            <span id="current-song-index">0</span> / <span id="total-songs">0</span>
+          </div>
+        </div>
+        <div class="header-controls">
+          <button id="playlist-toggle-btn" class="playlist-toggle-btn" title="切换播放列表">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+          </button>
+          <button id="close-player-btn" class="close-btn" title="关闭播放器">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 当前播放歌曲信息 -->
+      <div class="current-song-info">
+        <div class="song-cover">
+          <img id="song-cover" src="/images/default-cover.jpg" alt="歌曲封面">
+        </div>
+        <div class="song-details">
+          <h3 id="current-song-title">未选择歌曲</h3>
+          <p id="current-song-artist">未知艺术家</p>
+          <div class="song-progress">
+            <span id="current-time">00:00</span>
+            <div class="progress-bar">
+              <div class="progress-track">
+                <div id="progress-fill" class="progress-fill"></div>
+                <div id="progress-handle" class="progress-handle"></div>
+              </div>
+            </div>
+            <span id="total-time">00:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 播放控制按钮 -->
+      <div class="player-controls">
+        <button id="shuffle-btn" class="control-btn" title="随机播放">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16,3 21,3 21,8"></polyline>
+            <path d="M4,20 L21,3"></path>
+            <polyline points="21,16 21,21 16,21"></polyline>
+            <path d="M15,15 L21,21"></path>
+            <path d="M4,4 L9,9"></path>
+          </svg>
+        </button>
+        <button id="prev-btn" class="control-btn" title="上一首">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="19,20 9,12 19,4"></polygon>
+            <line x1="5" y1="19" x2="5" y2="5"></line>
+          </svg>
+        </button>
+        <button id="play-pause-btn" class="control-btn play-btn" title="播放">
+          <svg id="play-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5,3 19,12 5,21"></polygon>
+          </svg>
+          <svg id="pause-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        </button>
+        <button id="next-btn" class="control-btn" title="下一首">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5,4 15,12 5,20"></polygon>
+            <line x1="19" y1="5" x2="19" y2="19"></line>
+          </svg>
+        </button>
+        <button id="repeat-btn" class="control-btn" title="循环播放">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="17,1 21,5 17,9"></polyline>
+            <path d="M3,11 L21,5"></path>
+            <polyline points="7,23 3,19 7,15"></polyline>
+            <path d="M21,13 L3,19"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 音量控制 -->
+      <div class="volume-control">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"></polygon>
+          <path d="M19.07,4.93 C20.98,6.84 20.98,10.16 19.07,12.07"></path>
+          <path d="M15.54,8.46 C16.47,9.39 16.47,10.61 15.54,11.54"></path>
+        </svg>
+        <div class="volume-bar">
+          <div class="volume-track">
+            <div id="volume-fill" class="volume-fill"></div>
+            <div id="volume-handle" class="volume-handle"></div>
+          </div>
+        </div>
+        <span id="volume-value">100</span>
+      </div>
+
+      <!-- 播放列表 -->
+      <div class="playlist-section">
+        <div class="playlist-header">
+          <h3>播放列表</h3>
+          <div class="playlist-actions">
+            <input type="file" id="music-file-input" accept="audio/*" multiple style="display: none;">
+            <button id="add-music-btn" class="action-btn" title="添加音乐">
+              <i class="fa fa-plus"></i>
+            </button>
+            <button id="shuffle-playlist-btn" class="action-btn" title="随机排序">
+              <i class="fa fa-random"></i>
+            </button>
+            <button id="clear-playlist-btn" class="action-btn" title="清空列表">
+              <i class="fa fa-trash"></i>
+            </button>
+            <button id="restore-playlist-btn" class="action-btn" title="恢复默认播放列表">
+              <i class="fa fa-refresh"></i>
+            </button>
+          </div>
+        </div>
+        <div class="playlist-stats">
+          <span id="song-count">0 首歌曲</span>
+          <span id="total-duration">总时长: 00:00</span>
+        </div>
+        <div id="playlist" class="playlist">
+          <!-- 歌曲列表将在这里动态生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 隐藏的音频元素 -->
+    <audio id="audio-player" preload="metadata"></audio>
+  </div>
+
+  <!-- 音乐播放器切换按钮 -->
+  <button id="music-player-toggle" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;" title="音乐播放器">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="2"></circle>
+      <path d="M12 1v6m0 6v6"></path>
+      <path d="m15.5 3.5-3.5 3.5-3.5-3.5"></path>
+      <path d="m15.5 20.5-3.5-3.5-3.5 3.5"></path>
+    </svg>
+  </button>
+
+  <!-- 全局音乐播放器脚本 -->
+  <script src="{{ url_for(theme.js) }}/local-music-player.js"></script>
+  <script src="{{ url_for(theme.js) }}/music-control.js"></script>
+  <script>
+    // 初始化全局音乐播放器
+    document.addEventListener('DOMContentLoaded', function() {
+      // 创建全局播放器实例
+      const globalPlayer = new LocalMusicPlayer('global-music-player');
+      
+      // 切换按钮功能
+      const toggleBtn = document.getElementById('music-player-toggle');
+      const playerPanel = document.getElementById('global-music-player');
+      const playlistToggleBtn = document.getElementById('playlist-toggle-btn');
+      const closeBtn = document.getElementById('close-player-btn');
+      
+      toggleBtn.addEventListener('click', function() {
+        if (playerPanel.style.display === 'none' || playerPanel.style.display === '') {
+          playerPanel.style.display = 'block';
+          playerPanel.classList.remove('playlist-expanded');
+        } else {
+          playerPanel.style.display = 'none';
+        }
+      });
+      
+      // 播放列表切换功能
+      playlistToggleBtn.addEventListener('click', function() {
+        playerPanel.classList.toggle('playlist-expanded');
+      });
+      
+      // 关闭按钮功能
+      closeBtn.addEventListener('click', function() {
+        playerPanel.style.display = 'none';
+      });
+      
+      // 初始化音乐控制器
+      if (typeof initMusicControl === 'function') {
+        initMusicControl();
+      }
+    });
+  </script>
+
   {{- next_inject('bodyEnd') }}
 </body>
 </html>

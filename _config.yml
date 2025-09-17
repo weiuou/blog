@@ -55,6 +55,14 @@ prismjs:
   line_number: true
   tab_replace: ''
 
+# Markdown
+marked:
+  html: true
+  xhtmlOut: false
+  breaks: true
+  linkify: true
+  typographer: true
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
@@ -102,3 +110,18 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+# APlayer Configuration
+aplayer:
+  meting: true
+  asset_inject: true
+  externalLink: https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css
+  scriptDir: https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js
+  meting_api: https://api.injahow.cn/meting/
+  meting_server: netease
+  meting_type: playlist
+  mutex: true
+  lrcType: 3
+  storageName: aplayer-setting
+  preload: auto
+  theme: '#b7daff'
