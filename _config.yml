@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 我的个人博客
-subtitle: '记录生活，分享技术'
-description: '这是一个基于Hexo搭建的个人博客，用于记录学习心得和生活感悟'
-keywords: 博客,技术,生活,学习
-author: 博客作者
+title: Weiuou's Blog
+subtitle: ''
+description: ''
+keywords: 分享,吐槽,闲聊
+author: Weiuou
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://weiuou.github.io/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -40,7 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
@@ -109,7 +109,9 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/weiuou/weiuou.github.io.git
+  branch: main
 
 # APlayer Configuration
 aplayer:
