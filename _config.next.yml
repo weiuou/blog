@@ -1,0 +1,4 @@
+math:
+  mathjax:
+    enable: true
+    tags: none
