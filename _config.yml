@@ -127,3 +127,11 @@ aplayer:
   storageName: aplayer-setting
   preload: auto
   theme: '#b7daff'
+
+hexo-filter-mathjax:
+  tags: none
+  single_dollars: true
+  cjk_width: 0.9
+  normal_width: 0.6
+  append_css: true
+  every_page: false
